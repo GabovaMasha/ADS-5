@@ -31,7 +31,7 @@ int calcul(char oper, int a, int b) {
 std::string infx2pstfx(std::string inf) {
   std::string post;
   char razd = ' ';
-  TStack <char, 100> t1;
+  TStack <char, 100> t;
   for (int i = 0; i < inf.size(); i++) {
     if (prioritet(inf[i]) == 5) {
         post.push_back(inf[i]);
@@ -39,32 +39,32 @@ std::string infx2pstfx(std::string inf) {
     }
     else {
     if (prioritet(inf[i]) == 0) {
-        t1.push(inf[i]);
-    } else if (t1.isEmpty()) {
-       t1.push(inf[i]); 
-    } else if ((prioritet(inf[i]) > prioritet(t1.get()))) {
-        t1.push(inf[i]);
+        t.push(inf[i]);
+    } else if (t.isEmpty()) {
+       t.push(inf[i]); 
+    } else if ((prioritet(inf[i]) > prioritet(t.get()))) {
+        t.push(inf[i]);
     } else if (prioritet(inf[i]) == 1) {
-        while (prioritet(t1.get()) != 0) {
+        while (prioritet(t.get()) != 0) {
             post.push_back(t.get());
             post.push_back(razd);
-            t1.pop();
+            t.pop();
         }
-        t1.pop();
+        t.pop();
     } else {
-        while (!t1.isEmpty() && (prioritet(inf[i]) <= prioritet(t1.get()))) {
-            post.push_back(t1.get());
+        while (!t.isEmpty() && (prioritet(inf[i]) <= prioritet(t.get()))) {
+            post.push_back(t.get());
             post.push_back(razd); 
-            t1.pop();
+            t.pop();
         }
-        t1.push(inf[i]);
+        t.push(inf[i]);
     }   
     }
   }
-  while (!t1.isEmpty()) {
-    post.push_back(t1.get());
+  while (!t.isEmpty()) {
+    post.push_back(t.get());
     post.push_back(razd);
-    t1.pop();  
+    t.pop();  
   }
   for (int j = 0; j < post.size(); j++) {
       if (post[post.size()-1] == ' ')
@@ -74,20 +74,20 @@ std::string infx2pstfx(std::string inf) {
 }
 
 int eval(std::string pref) {
-TStack <int, 100> t2;
+TStack <int, 100> t;
 int res = 0;
 for (int i = 0; i < pref.size(); i ++) {
-    if (prioritet(pref[i])) == 5) {
-        t2.push(pref[i] - '0');
+    if (prioritet(pref[i]) == 5) {
+        t.push(pref[i] - '0');
     }
     else if (prioritet(pref[i]) < 4) {
-        int x = t2.get();
-        t2.pop;
-        int y = t2.get();
-        t2.pop;
-        t2.push(calcul(pref[i], x, y));
+        int x = t.get();
+        t.pop;
+        int y = t.get();
+        t.pop;
+        t.push(calcul(pref[i], x, y));
     }
 }
-res = t2.get();
+res = t.get();
 return res;
 }
