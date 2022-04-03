@@ -28,7 +28,7 @@ int calcul(char oper, int a, int b) {
     }
 }
 
-std::string infx2pstfx
+std::string infx2pstfx(std::string inf) {
   std::string post;
   char razd = ' ';
   TStack <char, 100> t1;
