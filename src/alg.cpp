@@ -80,9 +80,9 @@ for (int i = 0; i < pref.size(); i ++) {
         t.push(pref[i] - '0');
     } else if (prioritet(pref[i]) < 4) {
         int x = t.get();
-        t.pop;
+        t.pop();
         int y = t.get();
-        t.pop;
+        t.pop();
         t.push(calcul(pref[i], x, y));
     }
 }
