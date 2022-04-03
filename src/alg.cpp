@@ -36,12 +36,11 @@ std::string infx2pstfx(std::string inf) {
     if (prioritet(inf[i]) == 5) {
         post.push_back(inf[i]);
         post.push_back(razd);
-    }
-    else {
+    } else {
     if (prioritet(inf[i]) == 0) {
         t.push(inf[i]);
     } else if (t.isEmpty()) {
-       t.push(inf[i]); 
+       t.push(inf[i]);
     } else if ((prioritet(inf[i]) > prioritet(t.get()))) {
         t.push(inf[i]);
     } else if (prioritet(inf[i]) == 1) {
@@ -54,17 +53,17 @@ std::string infx2pstfx(std::string inf) {
     } else {
         while (!t.isEmpty() && (prioritet(inf[i]) <= prioritet(t.get()))) {
             post.push_back(t.get());
-            post.push_back(razd); 
+            post.push_back(razd);
             t.pop();
         }
         t.push(inf[i]);
-    }   
+    }
     }
   }
   while (!t.isEmpty()) {
     post.push_back(t.get());
     post.push_back(razd);
-    t.pop();  
+    t.pop();
   }
   for (int j = 0; j < post.size(); j++) {
       if (post[post.size()-1] == ' ')
@@ -79,8 +78,7 @@ int res = 0;
 for (int i = 0; i < pref.size(); i ++) {
     if (prioritet(pref[i]) == 5) {
         t.push(pref[i] - '0');
-    }
-    else if (prioritet(pref[i]) < 4) {
+    } else if (prioritet(pref[i]) < 4) {
         int x = t.get();
         t.pop;
         int y = t.get();
