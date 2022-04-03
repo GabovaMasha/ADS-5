@@ -40,20 +40,20 @@ std::string infx2pstfx(std::string inf) {
     else {
     if (prioritet(inf[i]) == 0) {
         t1.push(inf[i]);
-    } else if (t.isEmpty()) {
+    } else if (t1.isEmpty()) {
        t1.push(inf[i]); 
-    } else if ((prioritet(inf[i]) > prioritet(t.get()))) {
+    } else if ((prioritet(inf[i]) > prioritet(t1.get()))) {
         t1.push(inf[i]);
     } else if (prioritet(inf[i]) == 1) {
-        while (prioritet(t.get()) != 0) {
+        while (prioritet(t1.get()) != 0) {
             post.push_back(t.get());
             post.push_back(razd);
             t1.pop();
         }
         t1.pop();
     } else {
-        while (!t.isEmpty() && (prioritet(inf[i]) <= prioritet(t.get()))) {
-            post.push_back(t.get());
+        while (!t1.isEmpty() && (prioritet(inf[i]) <= prioritet(t1.get()))) {
+            post.push_back(t1.get());
             post.push_back(razd); 
             t1.pop();
         }
@@ -61,8 +61,8 @@ std::string infx2pstfx(std::string inf) {
     }   
     }
   }
-  while (!t.isEmpty()) {
-    post.push_back(t.get());
+  while (!t1.isEmpty()) {
+    post.push_back(t1.get());
     post.push_back(razd);
     t1.pop();  
   }
@@ -81,9 +81,9 @@ for (int i = 0; i < pref.size(); i ++) {
         t2.push(pref[i] - '0');
     }
     else if (prioritet(pref[i]) < 4) {
-        int x = t.get();
+        int x = t2.get();
         t2.pop;
-        int y = t.get();
+        int y = t2.get();
         t2.pop;
         t2.push(calcul(pref[i], x, y));
     }
